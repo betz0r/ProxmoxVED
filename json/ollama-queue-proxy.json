@@ -1,0 +1,40 @@
+{
+  "name": "Ollama Queue Proxy",
+  "slug": "ollama-queue-proxy",
+  "categories": [
+    20
+  ],
+  "date_created": "2026-06-08",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 11435,
+  "documentation": "https://github.com/TadMSTR/ollama-queue-proxy/blob/main/README.md",
+  "website": "https://github.com/TadMSTR/ollama-queue-proxy",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/ollama.webp",
+  "description": "Drop-in HTTP proxy for Ollama that adds per-client API key authentication, priority queuing (high/normal/low), and model-aware failover. Point your Ollama clients at the proxy instead of Ollama directly.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/ollama-queue-proxy.sh",
+      "config_path": "/opt/ollama-queue-proxy/config.yml",
+      "resources": {
+        "cpu": 1,
+        "ram": 512,
+        "hdd": 4,
+        "os": "Debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "Edit /opt/ollama-queue-proxy/config.yml and set your Ollama host URL (the default is a placeholder). The auto-generated API key is stored in /root/ollama-queue-proxy.creds.",
+      "type": "info"
+    }
+  ]
+}
