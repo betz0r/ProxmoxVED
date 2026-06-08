@@ -29,6 +29,11 @@ $STD uv venv /opt/ollama-queue-proxy/.venv
 $STD uv pip install --python /opt/ollama-queue-proxy/.venv/bin/python /opt/ollama-queue-proxy
 msg_ok "Installed Ollama Queue Proxy"
 
+msg_info "Setting Root Password"
+ROOT_PASS="$(openssl rand -base64 12)"
+echo "root:${ROOT_PASS}" | chpasswd
+msg_ok "Set Root Password"
+
 msg_info "Creating Config"
 API_KEY="sk-$(openssl rand -hex 24)"
 cat <<EOF >/opt/ollama-queue-proxy/config.yml
@@ -60,6 +65,7 @@ logging:
 EOF
 {
   echo "Ollama Queue Proxy"
+  echo "Root Password: ${ROOT_PASS}"
   echo "API key: ${API_KEY}"
 } >>~/ollama-queue-proxy.creds
 msg_ok "Created Config"
